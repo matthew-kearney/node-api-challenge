@@ -78,6 +78,107 @@ router.post('/action', validateAction, (req, res) => {
 
 
 //update project
+router.put('/:id', (req, res) => {
+
+    const { id } = req.params;
+    if (!req.body.name || !req.body.description) {
+      res.status(400).json({
+        errorMessage: 'Please provide title and contents for the post.'
+      });
+    } else {
+      Project.update(id, req.body)
+        .then(updated => {
+          if (updated) {
+            res.status(200).json(updated);
+          } else {
+            res.status(404).json({
+              message: 'The post with the specified ID does not exist.'
+            });
+          }
+        })
+        .catch(error => {
+          console.log(error);
+          res
+            .status(500)
+            .json({ error: 'The post information could not be modified' });
+        });
+    }
+  });
+ 
+
+
+//delete
+router.delete('/:id', (req, res) => {
+    const { id } = req.params;
+    Project.remove(id)
+      .then(project => {
+        if (project) {
+          res.status(200).json({ message: 'The post has been deleted' });
+        } else {
+          res
+            .status(404)
+            .json({ message: 'The post with the specified ID does not exist.' });
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        res.status(500).json({ error: 'The post could not be recovered' });
+      });
+  });
+
+
+
+
+//update action
+router.put('/actions/:id', (req, res) => {
+    const action = req.body;
+    const { id } = req.params;
+    if (!req.body.project_id || !req.body.description || !req.body.notes) {
+      res.status(400).json({
+        errorMessage: 'Please provide title and contents for the post.'
+      });
+    } else {
+      Action.update(id, req.body)
+        .then(updated => {
+          if (updated) {
+            res.status(200).json(updated);
+          } else {
+            res.status(404).json({
+              message: 'The post with the specified ID does not exist.'
+            });
+          }
+        })
+        .catch(error => {
+          console.log(error);
+          res
+            .status(500)
+            .json({ error: 'The post information could not be modified' });
+        });
+    }
+  });
+ 
+
+//delete action
+router.delete('/actions/:id', (req, res) => {
+    const { id } = req.params;
+    Action.remove(id)
+      .then(action => {
+        if (action) {
+          res.status(200).json({ message: 'The post has been deleted' });
+        } else {
+          res
+            .status(404)
+            .json({ message: 'The post with the specified ID does not exist.' });
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        res.status(500).json({ error: 'The post could not be recovered' });
+      });
+  });
+
+
+
 
 
 //custom middleware
