@@ -40,13 +40,23 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+        That is lets us set up middleware that respond to http requests. it also lets us use its routing which allows us to preform actions based on the http method and url.
+
 - [ ] Describe Middleware?
+
+        middleware makes it easier to implement comminications between the code so that it can do a specific task
 
 - [ ] Describe a Resource?
 
+        its an entity in a database that tells us format so that the server can talk to the client.
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+        you can run console.logs with status codes
+
 - [ ] How can we partition our application into sub-applications?
+
+        by using express javascript you can sepperate it into 3 sub apps. said to be a good framework.
 
 ## Minimum Viable Product
 
